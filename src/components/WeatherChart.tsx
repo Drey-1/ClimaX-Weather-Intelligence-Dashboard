@@ -13,39 +13,57 @@ export default function WeatherChart() {
 			<div className="flex justify-between items-center text-icons">
 				<h2 className="text-xl font-semibold">Overview</h2>
 				<div className="flex gap-4 border border-card-foreground rounded-3xl p-0.5">
-					<input
-						type="radio"
-						name="type"
-						id="temp"
-						value={"temp"}
-						className="sr-only"
-						onChange={handleChange}
-					/>
-					<label htmlFor="temp" className="bg-card-foreground rounded-3xl px-6 cursor-pointer c">
-						Temperature
-					</label>
-					<input
-						type="radio"
-						name="type"
-						id="humidity"
-						value={"hum"}
-						className="sr-only"
-						onChange={handleChange}
-					/>
-					<label htmlFor="humidity" className=" rounded-3xl px-6 cursor-pointer">
-						Humidity
-					</label>
-					<input
-						type="radio"
-						name="type"
-						id="rain"
-						value={"rain"}
-						className="sr-only"
-						onChange={handleChange}
-					/>
-					<label htmlFor="rain" className=" rounded-3xl px-6 cursor-pointer">
-						Rainfall
-					</label>
+					<div>
+						<input
+							type="radio"
+							name="type"
+							id="temp"
+							value={"temp"}
+							className="sr-only peer"
+							onChange={handleChange}
+							checked={chartType === "temp"}
+						/>
+						<label
+							htmlFor="temp"
+							className="peer-checked:bg-card-foreground rounded-3xl px-6 py-0.5 cursor-pointer"
+						>
+							Temperature
+						</label>
+					</div>
+					<div>
+						<input
+							type="radio"
+							name="type"
+							id="humidity"
+							value={"hum"}
+							className="sr-only peer"
+							onChange={handleChange}
+							
+						/>
+						<label
+							htmlFor="humidity"
+							className="peer-checked:bg-card-foreground rounded-3xl px-6 py-0.5 cursor-pointer"
+						>
+							Humidity
+						</label>
+					</div>
+					<div>
+						<input
+							type="radio"
+							name="type"
+							id="rain"
+							value={"rain"}
+							className="sr-only peer"
+							onChange={handleChange}
+							
+						/>
+						<label
+							htmlFor="rain"
+							className="peer-checked:bg-card-foreground rounded-3xl px-6 py-0.5 cursor-pointer"
+						>
+							Rainfall
+						</label>
+					</div>
 				</div>
 			</div>
 			<Chart type={chartType} />
