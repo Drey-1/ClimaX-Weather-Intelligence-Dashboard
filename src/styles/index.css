@@ -25,10 +25,10 @@
   -moz-osx-font-smoothing: grayscale;
   --radius: 0.25rem;
   --background: oklch(1 0 0);
-  --background-secondary: oklch(86.198% 0.00976 279.587);
+  --background-secondary: oklch(94.007% 0.00011 271.152);
   --foreground: oklch(93.635% 0.00321 15.392);
   --card: oklch(90.573% 0.00358 248.52);
-  --card-foreground: oklch(74.208% 0.01173 274.819);
+  --card-foreground: oklch(75.231% 0.0145 276.962);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
   --primary: oklch(77.501% 0.12234 243.9);
