@@ -1,6 +1,6 @@
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
-
 import { type ChartConfig, ChartContainer, ChartTooltip } from "@/components/ui/chart";
+import type { chartProps } from "@/types/chartProps";
 
 const chartData = [
 	{ hour: "00:00", value: 5 },
@@ -24,7 +24,18 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-export function Chart() {
+export function Chart({ type }: chartProps) {
+	const chartType = {
+		temp: 0,
+		hum: 1,
+		rain: 2,
+	};
+	const map = [
+		[0, 5, 10, 15, 20, 25, 30, 35, 40],
+		[0, 20, 40, 60, 80, 100],
+		[0, 5, 10],
+	];
+	const selectedTicks = map[chartType[type]];
 	return (
 		<ChartContainer config={chartConfig}>
 			<AreaChart
@@ -48,7 +59,7 @@ export function Chart() {
 					axisLine={false}
 					tickMargin={8}
 					domain={[0, "auto"]}
-					ticks={[0, 5, 10, 15, 20, 25, 30, 35]}
+					ticks={selectedTicks}
 				/>
 
 				<ChartTooltip
