@@ -14,7 +14,7 @@ export default function SummaryCard() {
 	};
 
 	return (
-		<div className="bg-linear-to-b from-primary to-secondary p-6 rounded-3xl w-max">
+		<div className="bg-linear-to-b from-primary to-secondary p-6 rounded-3xl w-max h-max">
 			<div className="text-xs">
 				<p className=" text-gray-200">Today, {today}</p>
 				<p className="flex items-center  text-white">
@@ -27,13 +27,18 @@ export default function SummaryCard() {
 				<p className="text-5xl font-semibold bg-linear-to-b from-white via-white to-transparent bg-clip-text text-transparent">
 					{mockCity.temperature}
 				</p>
-                <CloudSunIcon size={82} className="-translate-y-4 text-yellow-100"/>
+				<CloudSunIcon size={82} className="-translate-y-4 text-yellow-100" />
 			</div>
-            <div className="flex text-white text-sm items-center [&>*:not(:last-child)]:border-r [&>*:not(:last-child)]:border-white [&>*:not(:last-child)]:pr-6 [&>*:not(:first-child)]:pl-6"> 
-				<InfoItem icon={Wind} value={mockCity.wind} label="wind" key={"wind"}/>
-				<InfoItem icon={DropletsIcon} value={mockCity.humidity} label="humidity" key={"humidity"}/>
-				<InfoItem icon={EyeIcon} value={mockCity.visibility} label="visibility" key={"visibility"}/>
-            </div>
+			<div className="flex text-white text-sm items-center [&>*:not(:last-child)]:border-r [&>*:not(:last-child)]:border-white [&>*:not(:last-child)]:pr-6 [&>*:not(:first-child)]:pl-6">
+				<InfoItem icon={Wind} value={mockCity.wind} label="wind" key={"wind"} />
+				<InfoItem icon={DropletsIcon} value={mockCity.humidity} label="humidity" key={"humidity"} />
+				<InfoItem
+					icon={EyeIcon}
+					value={mockCity.visibility}
+					label="visibility"
+					key={"visibility"}
+				/>
+			</div>
 		</div>
 	);
 }
