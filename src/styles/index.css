@@ -109,7 +109,7 @@
   color: oklch(100% 0.00011 271.152);
   --background: oklch(18.745% 0.00829 274.449);
   --background-secondary: oklch(27.221% 0.01198 264.38);
-  --foreground: oklch(31.413% 0.00902 276.834);
+  --foreground: oklch(36.596% 0.01378 280.014);
   --card: oklch(30.974% 0.00729 274.727);
   --card-foreground: oklch(46.483% 0.00818 276.983);
   --popover: oklch(0.208 0.042 265.755);
@@ -147,6 +147,9 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  html, body {
+    @apply h-full
   }
 }
 
