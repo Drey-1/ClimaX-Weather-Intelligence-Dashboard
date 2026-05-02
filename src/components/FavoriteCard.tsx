@@ -1,29 +1,37 @@
 import { StarIcon } from "lucide-react";
-import type { favoriteCardsProps } from "@/types/favoriteCardsProps";
+import { useFavorites } from "@/hooks/useFavorites";
+import type { citiesWeathersType } from "@/types/citiesWeathersType";
 
 export default function FavoriteCards({
-	icon: Icon,
-	city,
-	maxTemp,
-	minTemp,
-	tempNow,
-}: favoriteCardsProps) {
+	icon,
+	name,
+	tempC,
+	minTempC,
+	maxTempC,
+}: citiesWeathersType) {
+	const { toggleFavorite } = useFavorites();
+
 	return (
 		<div className="flex border-2 border-card rounded-3xl p-4 justify-between items-center">
-			<button type="button">
-				<StarIcon size={38} className="text-icons" />
+			<button
+				type="button"
+				onClick={() => {
+					toggleFavorite(name);
+				}}
+			>
+				<StarIcon size={38} fill="currentColor" className="text-icons cursor-pointer" />
 			</button>
-			<Icon className="text-icons" size={38} />
-			<p className="text-icons text-3xl">{city}</p>
-			<p className="text-icons text-3xl">{tempNow}</p>
+			<img src={icon} alt="" />
+			<p className="text-icons text-3xl">{name}</p>
+			<p className="text-icons text-3xl">{tempC}°C</p>
 			<div className="flex border-l border-card-foreground text-icons pl-12 pr-4 gap-10">
-				<div className="flex flex-col text-accent">
+				<div className="flex flex-col text-accent text-center">
 					<h3>Min</h3>
-					<p>{minTemp}</p>
+					<p>{minTempC}°C</p>
 				</div>
-				<div className="flex flex-col text-destructive">
+				<div className="flex flex-col text-destructive text-center">
 					<h3>Max</h3>
-					<p>{maxTemp}</p>
+					<p>{maxTempC}°C</p>
 				</div>
 			</div>
 		</div>
