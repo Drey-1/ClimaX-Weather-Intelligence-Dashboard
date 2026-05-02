@@ -1,52 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CloudRainIcon, PlusIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import FavoriteCard from "@/components/FavoriteCard";
 import SearchDialog from "@/components/SearchDialog";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { useFavorites } from "@/hooks/useFavorites";
+import { useFavoritesWeather } from "@/hooks/useFavoritesWeather";
 
 function RouteComponent() {
-	const mock = [
-		{
-			icon: CloudRainIcon,
-			city: "New York",
-			tempNow: "23°C",
-			minTemp: "18°C",
-			maxTemp: "24°C",
-		},
-		{
-			icon: CloudRainIcon,
-			city: "New York",
-			tempNow: "23°C",
-			minTemp: "18°C",
-			maxTemp: "24°C",
-		},
-		{
-			icon: CloudRainIcon,
-			city: "New York",
-			tempNow: "23°C",
-			minTemp: "18°C",
-			maxTemp: "24°C",
-		},
-		{
-			icon: CloudRainIcon,
-			city: "New York",
-			tempNow: "23°C",
-			minTemp: "18°C",
-			maxTemp: "24°C",
-		},
-	];
+	const { favorites } = useFavorites();
+	const { citiesWeathers } = useFavoritesWeather(favorites);
 	return (
 		<div className="flex flex-col gap-6">
 			<h1 className="text-icons text-xl pl-6 pb-2">Your favorites citys:</h1>
-			{mock.map((item) => {
+			{citiesWeathers.map((item) => {
 				return (
 					<FavoriteCard
-						key={item.city}
+						key={item.name}
 						icon={item.icon}
-						city={item.city}
-						tempNow={item.tempNow}
-						minTemp={item.minTemp}
-						maxTemp={item.maxTemp}
+						name={item.name}
+						tempC={item.tempC}
+						minTempC={item.minTempC}
+						maxTempC={item.maxTempC}
 					/>
 				);
 			})}
