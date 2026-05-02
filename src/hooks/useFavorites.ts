@@ -26,6 +26,7 @@ export const useFavorites = () => {
 	};
 
 	return {
+		favorites,
 		toggleFavorite,
 		isFavorited,
 	};
