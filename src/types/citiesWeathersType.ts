@@ -6,4 +6,10 @@ type citiesWeathersType = {
 	minTempC: number;
 };
 
-export type { citiesWeathersType };
+type nowCitiesWeathersType = {
+	icon: string;
+	name: string;
+	tempC: number;
+}
+
+export type { citiesWeathersType, nowCitiesWeathersType };
