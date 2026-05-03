@@ -1,0 +1,40 @@
+import { useEffect, useState } from "react";
+import { getCurrent } from "@/services/wheatherService";
+import type { nowCitiesWeathersType } from "@/types/citiesWeathersType";
+
+export const useSelectedFavoriteCity = (favorites: string[]) => {
+	const [nowCitiesWeathers, setNowCitiesWeathers] = useState<nowCitiesWeathersType[]>([]);
+
+	useEffect(() => {
+		if (!favorites.length) return;
+		const fetchCitiesData = async () => {
+			try {
+				const nowCityDatas: nowCitiesWeathersType[] = await Promise.all(
+					favorites.map(async (city) => {
+						const nowCityData = await getCurrent(city);
+						return {
+							icon: nowCityData.current.condition.icon,
+							name: nowCityData.location.name,
+							tempC: nowCityData.current.temp_c,
+						};
+					}),
+				);
+				console.log(nowCityDatas);
+				setNowCitiesWeathers(nowCityDatas);
+			} catch (err) {
+				console.error(err);
+			}
+		};
+		fetchCitiesData();
+	}, [favorites]);
+
+	const [selectedCity, setSelectedCity] = useState<string | null>(null);
+
+	useEffect(() => {
+		if (nowCitiesWeathers.length > 0 && selectedCity === null) {
+			setSelectedCity(nowCitiesWeathers[0].name);
+		}
+	}, [nowCitiesWeathers]);
+
+	return { nowCitiesWeathers, selectedCity, setSelectedCity };
+};
