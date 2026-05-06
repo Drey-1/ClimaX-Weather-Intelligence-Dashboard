@@ -32,7 +32,7 @@ export default function FavoriteCarousel() {
 						const isSelected = selectedCity === item.name;
 
 						return (
-							<CarouselItem key={item.name} className={`${basis} py-3`}>
+							<CarouselItem key={item.name} className={`${basis} py-3 w-60`}>
 								<div className="p-1">
 									<Card
 										onClick={() => setSelectedCity(item.name)}
