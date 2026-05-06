@@ -10,6 +10,15 @@ type nowCitiesWeathersType = {
 	icon: string;
 	name: string;
 	tempC: number;
-}
+};
 
-export type { citiesWeathersType, nowCitiesWeathersType };
+type calendarCityForecastType = {
+	day: {
+		condition: {
+			icon: string;
+		};
+	};
+	date: string;
+};
+
+export type { citiesWeathersType, nowCitiesWeathersType, calendarCityForecastType };
