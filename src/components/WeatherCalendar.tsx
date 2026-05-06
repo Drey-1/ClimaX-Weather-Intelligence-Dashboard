@@ -1,35 +1,20 @@
-import {
-	addDays,
-	eachDayOfInterval,
-	endOfMonth,
-	endOfWeek,
-	format,
-	isSameDay,
-	startOfMonth,
-	startOfWeek,
-} from "date-fns";
-import { Sun } from "lucide-react";
+import { format, isSameDay } from "date-fns";
+import { calendar, WEEK_DAYS } from "@/domain/calendarCreate";
+import { useFavorites } from "@/hooks/useFavorites";
+import { useSelectedFavoriteCity } from "@/hooks/useSelectedFavoriteCity";
+import { useWeatherCalendar } from "@/hooks/useWeatherCalendar";
 
 export default function WeatherCalendar() {
-	const today = new Date();
-	const tomorrow = addDays(today, 1);
+	const { favorites } = useFavorites();
+	const { selectedCity } = useSelectedFavoriteCity(favorites);
+	const { calendarIcons } = useWeatherCalendar(selectedCity);
 
-	const monthStart = startOfMonth(today);
-	const monthEnd = endOfMonth(monthStart);
-	const calendarStart = startOfWeek(monthStart);
-	const calendarEnd = endOfWeek(monthEnd);
-
-	const days = eachDayOfInterval({
-		start: calendarStart,
-		end: calendarEnd,
-	});
-
-	const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	const { days, today, tomorrow } = calendar();
 
 	return (
 		<div className="w-full border border-card-foreground rounded-xl bg-card shadow-md overflow-hidden">
 			<div className="grid grid-cols-7 border-b bg-primary">
-				{weekDays.map((day) => (
+				{WEEK_DAYS.map((day) => (
 					<div key={day} className="p-3 text-center text-sm text-icons border-r last:border-r-0">
 						{day}
 					</div>
@@ -40,7 +25,8 @@ export default function WeatherCalendar() {
 				{days.map((day, i) => {
 					const isCurrentMonth = day.getMonth() === today.getMonth();
 					const isToday = isSameDay(day, today);
-					const dayFormatted = format(day, "dd");
+					const dayFormatted = format(day, "yyyy-MM-dd");
+					const forecast = calendarIcons.find((item) => item.date === dayFormatted);
 
 					return (
 						<div
@@ -54,11 +40,13 @@ export default function WeatherCalendar() {
 								{isSameDay(day, tomorrow) && (
 									<span className="font-bold text-xs uppercase text-accent">Tomorrow</span>
 								)}
-								<span className={`absolute top-2 right-2 ${isToday ? "font-bold text-white" : ""}`}>{dayFormatted}</span>
+								<span className={`absolute top-2 right-2 ${isToday ? "font-bold text-white" : ""}`}>
+									{format(day, "dd")}
+								</span>
 							</div>
 
 							<div className="flex-1 w-full flex items-center justify-center">
-								{day.getDate() === 16 && <Sun className="h-10 w-10 text-yellow-400" />}
+								{forecast && <img src={forecast.icon} alt="" />}
 							</div>
 						</div>
 					);
