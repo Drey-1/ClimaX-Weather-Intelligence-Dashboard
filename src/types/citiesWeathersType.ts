@@ -21,4 +21,16 @@ type calendarCityForecastType = {
 	date: string;
 };
 
-export type { citiesWeathersType, nowCitiesWeathersType, calendarCityForecastType };
+type deepCityForecastType = {
+	date: string;
+	day: {
+		condition: {
+			icon: string;
+		};
+		mintemp_c: number;
+		maxtemp_c: number;
+		totalprecip_mm: number;
+	};
+};
+
+export type { citiesWeathersType, nowCitiesWeathersType, calendarCityForecastType, deepCityForecastType };
