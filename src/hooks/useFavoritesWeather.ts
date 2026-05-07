@@ -15,9 +15,9 @@ export const useFavoritesWeather = (favorites: string[]) => {
 						return {
 							icon: cityData.current.condition.icon,
 							name: cityData.location.name,
-							tempC: cityData.current.temp_c,
-							maxTempC: cityData.forecast.forecastday[0].day.maxtemp_c,
-							minTempC: cityData.forecast.forecastday[0].day.mintemp_c,
+							tempC: cityData.current.temp_c.toFixed(0),
+							maxTempC: cityData.forecast.forecastday[0].day.maxtemp_c.toFixed(0),
+							minTempC: cityData.forecast.forecastday[0].day.mintemp_c.toFixed(0),
 						};
 					}),
 				);
