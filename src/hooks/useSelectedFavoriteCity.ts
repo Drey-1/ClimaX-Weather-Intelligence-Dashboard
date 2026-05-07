@@ -15,7 +15,7 @@ export const useSelectedFavoriteCity = (favorites: string[]) => {
 						return {
 							icon: nowCityData.current.condition.icon,
 							name: nowCityData.location.name,
-							tempC: nowCityData.current.temp_c,
+							tempC: nowCityData.current.temp_c.toFixed(0),
 						};
 					}),
 				);

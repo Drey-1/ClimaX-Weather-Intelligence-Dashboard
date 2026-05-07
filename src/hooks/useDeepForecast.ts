@@ -18,9 +18,9 @@ export const useDeepForecast = (selectedCity: string | null) => {
 						day: dateChar.split("-")[2],
 						icon: item.day.condition.icon,
 						dayOfWeek: date.toLocaleDateString("en-US", { weekday: "short" }),
-						minTempC: item.day.mintemp_c + "°C",
-						maxTempC: item.day.maxtemp_c + "°C",
-						precipitation: item.day.totalprecip_mm.toFixed(2),
+						minTempC: item.day.mintemp_c.toFixed(0) + "°C",
+						maxTempC: item.day.maxtemp_c.toFixed(0) + "°C",
+						precipitation: item.day.totalprecip_mm.toFixed(2) + "mm",
 					};
 				});
 				console.log(usefulData);
