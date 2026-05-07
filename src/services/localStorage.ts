@@ -6,4 +6,12 @@ const saveFavorites = (citiesList: string[]) => {
 	localStorage.setItem("favoritedCities", JSON.stringify(citiesList));
 };
 
-export { loadFavorites, saveFavorites };
+const loadPrincipalCity = () => {
+	localStorage.getItem("principalCity")
+}
+
+const savePrincipalCity = (city: string) => {
+	localStorage.setItem("principalCity", city);
+};
+
+export { loadFavorites, saveFavorites, loadPrincipalCity, savePrincipalCity };

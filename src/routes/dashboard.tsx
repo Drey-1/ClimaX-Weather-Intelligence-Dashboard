@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import dayjs from "dayjs";
 import { useState } from "react";
+import DeepSchedule from "@/components/DeepSchedule";
 import FavoriteCarousel from "@/components/FavoriteCarousel";
 import WeatherCalendar from "@/components/WeatherCalendar";
-import DeepSchedule from "@/components/DeepSchedule";
 
 export const Route = createFileRoute("/dashboard")({
 	component: RouteComponent,
@@ -13,7 +13,7 @@ function RouteComponent() {
 	const [dataPresentation, setDataPresentation] = useState<"simple" | "deep">("simple");
 
 	const dateData = dayjs();
-	const monthYear = dateData.format("MMMM YYYY").split(" ")
+	const monthYear = dateData.format("MMMM YYYY").split(" ");
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setDataPresentation(e.target.value as "simple" | "deep");
@@ -64,11 +64,7 @@ function RouteComponent() {
 					</div>
 				</div>
 
-				{dataPresentation === "simple" ? (
-					<WeatherCalendar />
-				) : (
-					<DeepSchedule />
-				)}
+				{dataPresentation === "simple" ? <WeatherCalendar /> : <DeepSchedule />}
 			</div>
 		</div>
 	);
