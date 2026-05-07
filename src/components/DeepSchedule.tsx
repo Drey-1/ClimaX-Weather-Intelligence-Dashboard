@@ -1,40 +1,16 @@
-import { CloudDrizzleIcon, DropletIcon } from "lucide-react";
-
-const mock = [
-	{
-		day: "01",
-		weekday: "Mon",
-		Icon: CloudDrizzleIcon,
-		minMax: ["23°C", "28°C"],
-		precipitation: "19.88mm",
-	},
-	{
-		day: "02",
-		weekday: "Tue",
-		Icon: CloudDrizzleIcon,
-		minMax: ["23°C", "28°C"],
-		precipitation: "19.88mm",
-	},
-	{
-		day: "03",
-		weekday: "Wed",
-		Icon: CloudDrizzleIcon,
-		minMax: ["23°C", "28°C"],
-		precipitation: "19.88mm",
-	},
-	{
-		day: "04",
-		weekday: "Thu",
-		Icon: CloudDrizzleIcon,
-		minMax: ["23°C", "28°C"],
-		precipitation: "19.88mm",
-	},
-];
+import { DropletIcon } from "lucide-react";
+import { useDeepForecast } from "@/hooks/useDeepForecast";
+import { useFavorites } from "@/hooks/useFavorites";
+import { useSelectedFavoriteCity } from "@/hooks/useSelectedFavoriteCity";
 
 export default function DeepSchedule() {
+	const { favorites } = useFavorites();
+	const { selectedCity } = useSelectedFavoriteCity(favorites);
+	const { deepForecasts } = useDeepForecast(selectedCity);
+
 	return (
 		<div className="px-4 text-icons text-xl ">
-			{mock.map((day) => {
+			{deepForecasts.map((day) => {
 				return (
 					<div
 						key={day.day}
@@ -42,12 +18,12 @@ export default function DeepSchedule() {
 					>
 						<div className="text-center p-1">
 							<p>{day.day}</p>
-							<p>{day.weekday}</p>
+							<p>{day.dayOfWeek}</p>
 						</div>
-						<day.Icon size={38} />
+						<img src={day.icon} alt="" />
 						<div className="flex gap-4">
-							<div className="text-accent">{day.minMax[0]}</div>
-							<div className="text-destructive">{day.minMax[1]}</div>
+							<div className="text-accent">{day.minTempC}</div>
+							<div className="text-destructive">{day.maxTempC}</div>
 						</div>
 						<div className="flex">
 							<DropletIcon />
