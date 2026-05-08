@@ -1,11 +1,13 @@
 import { MapPin, Star } from "lucide-react";
 import { useCitySearch } from "@/hooks/useCitySearch";
 import { useFavorites } from "@/hooks/useFavorites";
+import { useSelectedCitys } from "@/hooks/useSelectedCity";
 import { DialogClose, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 
 export default function SearchDialog() {
 	const { query, setQuery, cityList } = useCitySearch();
 	const { isFavorited, toggleFavorite } = useFavorites();
+	const { changeSelectedCity } = useSelectedCitys();
 
 	return (
 		<DialogContent showCloseButton={false} className="border border-card">
@@ -37,7 +39,8 @@ export default function SearchDialog() {
 					return (
 						<div
 							key={item.id}
-							className="flex p-2 m-1 justify-between hover:bg-select group rounded-xl"
+							className="flex p-2 m-1 justify-between hover:bg-select group rounded-xl cursor-pointer"
+							onClick={() => changeSelectedCity(item.city)}
 						>
 							<div className="flex gap-1 cursor-pointer">
 								<MapPin className="text-card-foreground group-hover:-rotate-90 transition-transform group-hover:scale-115" />
