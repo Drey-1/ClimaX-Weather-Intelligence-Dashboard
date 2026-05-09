@@ -1,8 +1,12 @@
 import type React from "react";
 import { useState } from "react";
+import { useSelectedCitys } from "@/hooks/useSelectedCity";
+import { useWholeTodayWeather } from "@/hooks/useWholeTodayWeather";
 import { Chart } from "./Chart";
 
 export default function WeatherChart() {
+	const { selectedCity } = useSelectedCitys();
+	const { wholeTodayWeather } = useWholeTodayWeather(selectedCity);
 	const [chartType, setChartType] = useState<"temp" | "rain" | "hum">("temp");
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +42,6 @@ export default function WeatherChart() {
 							value={"hum"}
 							className="sr-only peer"
 							onChange={handleChange}
-							
 						/>
 						<label
 							htmlFor="humidity"
@@ -55,7 +58,6 @@ export default function WeatherChart() {
 							value={"rain"}
 							className="sr-only peer"
 							onChange={handleChange}
-							
 						/>
 						<label
 							htmlFor="rain"
@@ -66,7 +68,16 @@ export default function WeatherChart() {
 					</div>
 				</div>
 			</div>
-			<Chart type={chartType} />
+			<Chart
+				type={chartType}
+				chartData={wholeTodayWeather.map((item) => {
+					return {
+						hour: item.time,
+						value:
+							chartType == "temp" ? item.tempC : chartType == "hum" ? item.humidity : item.rainfall,
+					};
+				})}
+			/>
 		</div>
 	);
 }
