@@ -1,17 +1,13 @@
-import type React from "react";
-import { useState } from "react";
 import { useSelectedCitys } from "@/hooks/useSelectedCity";
+import { useWeatherChart } from "@/hooks/useWeatherChart";
 import { useWholeTodayWeather } from "@/hooks/useWholeTodayWeather";
 import { Chart } from "./Chart";
 
 export default function WeatherChart() {
 	const { selectedCity } = useSelectedCitys();
 	const { wholeTodayWeather } = useWholeTodayWeather(selectedCity);
-	const [chartType, setChartType] = useState<"temp" | "rain" | "hum">("temp");
+	const { chartType, handleChange, chartData } = useWeatherChart(wholeTodayWeather);
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setChartType(e.target.value as "temp" | "rain" | "hum");
-	};
 	return (
 		<div className="bg-card rounded-3xl p-4">
 			<div className="flex justify-between items-center text-icons">
@@ -68,16 +64,7 @@ export default function WeatherChart() {
 					</div>
 				</div>
 			</div>
-			<Chart
-				type={chartType}
-				chartData={wholeTodayWeather.map((item) => {
-					return {
-						hour: item.time,
-						value:
-							chartType == "temp" ? item.tempC : chartType == "hum" ? item.humidity : item.rainfall,
-					};
-				})}
-			/>
+			<Chart type={chartType} chartData={chartData} />
 		</div>
 	);
 }
