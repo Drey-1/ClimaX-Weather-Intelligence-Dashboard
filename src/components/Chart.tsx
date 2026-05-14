@@ -1,5 +1,7 @@
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { type ChartConfig, ChartContainer, ChartTooltip } from "@/components/ui/chart";
+import { TICK_MAP, UNIT_MAP } from "@/domain/weatherChart.domain";
+import type { ChartDataType, ChartType } from "@/types/chartTypes";
 
 const chartConfig = {
 	value: {
@@ -8,18 +10,9 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-export function Chart({ type, chartData }) {
-	const chartType = {
-		temp: 0,
-		hum: 1,
-		rain: 2,
-	};
-	const tickMap = [
-		[0, 5, 10, 15, 20, 25, 30, 35, 40],
-		[0, 20, 40, 60, 80, 100],
-		[0, 5, 10],
-	];
-	const selectedTicks = tickMap[chartType[type]];
+export function Chart({ type, chartData }: { type: ChartType; chartData: ChartDataType[] }) {
+	const ticks = TICK_MAP[type];
+	const unit = UNIT_MAP[type];
 	return (
 		<ChartContainer config={chartConfig}>
 			<AreaChart
@@ -43,7 +36,7 @@ export function Chart({ type, chartData }) {
 					axisLine={false}
 					tickMargin={8}
 					domain={[0, "auto"]}
-					ticks={selectedTicks}
+					ticks={ticks}
 				/>
 
 				<ChartTooltip
@@ -55,7 +48,7 @@ export function Chart({ type, chartData }) {
 								<div className="relative -translate-11 ">
 									<div className="bg-linear-to-b from-primary to-secondary text-center px-5 py-1 rounded-full text-white text-sm">
 										{payload[0].value}
-										{type == "temp" ? "C°" : type == "hum" ? "%" : "mm"}
+										{unit}
 									</div>
 									<div className="absolute w-3 h-3 rotate-45 bg-secondary -z-10 -bottom-1 left-1/2 -translate-x-1/2" />
 								</div>
