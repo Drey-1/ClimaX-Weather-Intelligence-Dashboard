@@ -7,7 +7,7 @@ export async function getCurrent(city: string) {
 		params: {
 			key: KEY,
 			q: city,
-			lang: "pt",
+			lang: "en",
 		},
 	});
 	return response.data;
@@ -19,7 +19,7 @@ export async function getForecast(city: string, days: number) {
 			key: KEY,
 			q: city,
 			days,
-			lang: "pt",
+			lang: "en",
 		},
 	});
 	return response.data;
