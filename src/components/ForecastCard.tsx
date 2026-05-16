@@ -1,10 +1,10 @@
+import { useSelectedCity } from "@/contexts/SelectedCityContext";
 import { useNext7DaysWeather } from "@/hooks/useNext7DaysWeather";
-import { useSelectedCitys } from "@/hooks/useSelectedCity";
 
 export default function ForecastCard() {
-	const { selectedCity } = useSelectedCitys();
+	const { selectedCity } = useSelectedCity();
 	const { next7DaysWeather } = useNext7DaysWeather(selectedCity);
-	console.log(next7DaysWeather[1])
+	console.log(next7DaysWeather[1]);
 	return (
 		<div className="relative bg-card rounded-3xl p-4 w-full h-82 flex flex-col">
 			<h2 className="text-icons font-semibold text-xl">Next 7 days</h2>

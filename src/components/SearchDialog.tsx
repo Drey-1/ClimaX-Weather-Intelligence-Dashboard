@@ -1,13 +1,13 @@
 import { MapPin, Star } from "lucide-react";
+import { useSelectedCity } from "@/contexts/SelectedCityContext";
 import { useCitySearch } from "@/hooks/useCitySearch";
 import { useFavorites } from "@/hooks/useFavorites";
-import { useSelectedCitys } from "@/hooks/useSelectedCity";
 import { DialogClose, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 
 export default function SearchDialog() {
 	const { query, setQuery, cityList } = useCitySearch();
 	const { isFavorited, toggleFavorite } = useFavorites();
-	const { changeSelectedCity } = useSelectedCitys();
+	const { changeSelectedCity } = useSelectedCity();
 
 	return (
 		<DialogContent showCloseButton={false} className="border border-card">

@@ -1,15 +1,15 @@
 import dayjs from "dayjs";
 import { DropletsIcon, EyeIcon, MapPin, Wind } from "lucide-react";
-import { useSelectedCitys } from "@/hooks/useSelectedCity";
+import { useSelectedCity } from "@/contexts/SelectedCityContext";
 import { useSummaryWeather } from "@/hooks/useSummaryWeather";
 import InfoItem from "./InfoItem";
 
 export default function SummaryCard() {
-	const { selectedCity } = useSelectedCitys();
+	const { selectedCity } = useSelectedCity();
 	const { summaryWeather } = useSummaryWeather(selectedCity);
 	const data = dayjs();
 	const today = data.format("DD MMM YY");
-
+	console.log(selectedCity)
 	return (
 		<div className="bg-linear-to-b from-primary to-secondary p-6 rounded-3xl w-max h-max">
 			<div className="text-xs">

@@ -1,10 +1,10 @@
-import { useSelectedCitys } from "@/hooks/useSelectedCity";
+import { useSelectedCity } from "@/contexts/SelectedCityContext";
 import { useWeatherChart } from "@/hooks/useWeatherChart";
 import { useWholeTodayWeather } from "@/hooks/useWholeTodayWeather";
 import { Chart } from "./Chart";
 
 export default function WeatherChart() {
-	const { selectedCity } = useSelectedCitys();
+	const { selectedCity } = useSelectedCity();
 	const { wholeTodayWeather } = useWholeTodayWeather(selectedCity);
 	const { chartType, handleChange, chartData } = useWeatherChart(wholeTodayWeather);
 
