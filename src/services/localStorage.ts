@@ -14,4 +14,12 @@ const savePrincipalCity = (city: string) => {
 	localStorage.setItem("principalCity", city);
 };
 
-export { loadFavorites, saveFavorites, loadPrincipalCity, savePrincipalCity };
+const loadTheme = (): string | null => {
+	return localStorage.getItem("theme");
+};
+
+const saveTheme = (theme: string) => {
+	localStorage.setItem("theme", theme);
+};
+
+export { loadFavorites, saveFavorites, loadPrincipalCity, savePrincipalCity, loadTheme, saveTheme };
