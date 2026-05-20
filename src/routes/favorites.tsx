@@ -3,7 +3,7 @@ import { PlusIcon } from "lucide-react";
 import FavoriteCard from "@/components/FavoriteCard";
 import SearchDialog from "@/components/SearchDialog";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { useFavorites } from "@/hooks/useFavorites";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import { useFavoritesWeather } from "@/hooks/useFavoritesWeather";
 
 function RouteComponent() {
@@ -11,7 +11,7 @@ function RouteComponent() {
 	const { citiesWeathers } = useFavoritesWeather(favorites);
 	return (
 		<div className="flex flex-col gap-6">
-			<h1 className="text-icons text-xl pl-6 pb-2">Your favorites citys:</h1>
+			<h1 className="text-icons text-xl pl-6 pb-2">Your favorites cities:</h1>
 			{citiesWeathers.map((item) => {
 				return (
 					<FavoriteCard
