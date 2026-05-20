@@ -1,7 +1,7 @@
 import { MapPin, Star } from "lucide-react";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import { useSelectedCity } from "@/contexts/SelectedCityContext";
 import { useCitySearch } from "@/hooks/useCitySearch";
-import { useFavorites } from "@/hooks/useFavorites";
 import { DialogClose, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 
 export default function SearchDialog() {
