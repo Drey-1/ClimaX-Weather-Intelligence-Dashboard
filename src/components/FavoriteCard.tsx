@@ -1,5 +1,5 @@
 import { StarIcon } from "lucide-react";
-import { useFavorites } from "@/hooks/useFavorites";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import type { citiesWeathersType } from "@/types/citiesWeathersType";
 
 export default function FavoriteCards({
