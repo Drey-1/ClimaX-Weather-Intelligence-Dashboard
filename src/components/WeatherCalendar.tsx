@@ -1,6 +1,6 @@
 import { format, isSameDay } from "date-fns";
 import { calendar, WEEK_DAYS } from "@/domain/calendarCreate";
-import { useFavorites } from "@/hooks/useFavorites";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import { useSelectedFavoriteCity } from "@/hooks/useSelectedFavoriteCity";
 import { useWeatherCalendar } from "@/hooks/useWeatherCalendar";
 
