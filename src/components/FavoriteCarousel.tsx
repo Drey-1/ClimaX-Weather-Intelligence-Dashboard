@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useFavorites } from "@/hooks/useFavorites";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import { useSelectedFavoriteCity } from "@/hooks/useSelectedFavoriteCity";
 import { Card, CardContent } from "./ui/card";
 import {
