@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useFavorites } from "@/contexts/FavoritesContext";
-import { useSelectedFavoriteCity } from "@/hooks/useSelectedFavoriteCity";
+import { useSelectedFavoriteCity } from "@/contexts/SelectedFavoriteCityContext";
+import { useNowCitiesWeathers } from "@/hooks/useNowCitiesWeathers";
 import { Card, CardContent } from "./ui/card";
 import {
 	Carousel,
@@ -12,7 +13,8 @@ import {
 
 export default function FavoriteCarousel() {
 	const { favorites } = useFavorites();
-	const { nowCitiesWeathers, selectedCity, setSelectedCity } = useSelectedFavoriteCity(favorites);
+	const { nowCitiesWeathers } = useNowCitiesWeathers(favorites);
+	const { selectedCity, setSelectedCity } = useSelectedFavoriteCity();
 
 	const basis = `basis-1/${Math.min(favorites.length, 5)}`;
 
