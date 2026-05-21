@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getCurrent } from "@/services/wheatherService";
 import type { nowCitiesWeathersType } from "@/types/citiesWeathersType";
 
-export const useSelectedFavoriteCity = (favorites: string[]) => {
+export const useNowCitiesWeathers = (favorites: string[]) => {
 	const [nowCitiesWeathers, setNowCitiesWeathers] = useState<nowCitiesWeathersType[]>([]);
 
 	useEffect(() => {
@@ -28,13 +28,5 @@ export const useSelectedFavoriteCity = (favorites: string[]) => {
 		fetchCitiesData();
 	}, [favorites]);
 
-	const [selectedCity, setSelectedCity] = useState<string | null>(null);
-
-	useEffect(() => {
-		if (nowCitiesWeathers.length > 0 && selectedCity === null) {
-			setSelectedCity(nowCitiesWeathers[0].name);
-		}
-	}, [nowCitiesWeathers]);
-
-	return { nowCitiesWeathers, selectedCity, setSelectedCity };
+	return { nowCitiesWeathers };
 };
