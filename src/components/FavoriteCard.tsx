@@ -12,7 +12,7 @@ export default function FavoriteCards({
 	const { toggleFavorite } = useFavorites();
 
 	return (
-		<div className="flex border-2 border-card rounded-3xl p-4 justify-between items-center">
+		<div className="grid grid-cols-5 items-center border-2 border-card rounded-3xl p-4 justify-between ">
 			<button
 				type="button"
 				onClick={() => {
@@ -24,7 +24,7 @@ export default function FavoriteCards({
 			<img src={icon} alt="" />
 			<p className="text-icons text-3xl">{name}</p>
 			<p className="text-icons text-3xl">{tempC}°C</p>
-			<div className="flex border-l border-card-foreground text-icons pl-12 pr-4 gap-10">
+			<div className="grid grid-cols-2 border-l border-card-foreground text-icons pl-12 pr-4 gap-10">
 				<div className="flex flex-col text-accent text-center">
 					<h3>Min</h3>
 					<p>{minTempC}°C</p>
