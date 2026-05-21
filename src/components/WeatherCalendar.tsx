@@ -1,12 +1,10 @@
 import { format, isSameDay } from "date-fns";
+import { useSelectedFavoriteCity } from "@/contexts/SelectedFavoriteCityContext";
 import { calendar, WEEK_DAYS } from "@/domain/calendarCreate";
-import { useFavorites } from "@/contexts/FavoritesContext";
-import { useSelectedFavoriteCity } from "@/hooks/useSelectedFavoriteCity";
 import { useWeatherCalendar } from "@/hooks/useWeatherCalendar";
 
 export default function WeatherCalendar() {
-	const { favorites } = useFavorites();
-	const { selectedCity } = useSelectedFavoriteCity(favorites);
+	const { selectedCity } = useSelectedFavoriteCity();
 	const { calendarIcons } = useWeatherCalendar(selectedCity);
 
 	const { days, today, tomorrow } = calendar();
