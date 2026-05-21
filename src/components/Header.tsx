@@ -1,5 +1,6 @@
 import { MenuIcon, X } from "lucide-react";
 import { useState } from "react";
+import climaxLogo from "../assets/Logos/ClimaxLogo.webp";
 import SearchBar from "./SearchBar";
 import SideBar from "./SideBar";
 import ThemeSwitch from "./ThemeSwitch";
@@ -16,6 +17,7 @@ export default function Header() {
 				<Button size={"lg"} onClick={switchMenu} className="rounded-full">
 					{isMenuOpen ? <X /> : <MenuIcon />}
 				</Button>
+				<img src={climaxLogo} alt="Climax logo" className="relative w-10 -right-2"/>
 				<h1 className="text-4xl text-icons font-semibold">ClimaX</h1>
 			</div>
 			<SearchBar />
