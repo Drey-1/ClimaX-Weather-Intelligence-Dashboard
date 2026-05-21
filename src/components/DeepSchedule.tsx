@@ -1,11 +1,9 @@
 import { DropletIcon } from "lucide-react";
+import { useSelectedFavoriteCity } from "@/contexts/SelectedFavoriteCityContext";
 import { useDeepForecast } from "@/hooks/useDeepForecast";
-import { useFavorites } from "@/contexts/FavoritesContext";
-import { useSelectedFavoriteCity } from "@/hooks/useSelectedFavoriteCity";
 
 export default function DeepSchedule() {
-	const { favorites } = useFavorites();
-	const { selectedCity } = useSelectedFavoriteCity(favorites);
+	const { selectedCity } = useSelectedFavoriteCity();
 	const { deepForecasts } = useDeepForecast(selectedCity);
 
 	return (
