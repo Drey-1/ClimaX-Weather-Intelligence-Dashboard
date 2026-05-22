@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/index.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { FavoritesCitiesProvider } from "./contexts/FavoritesContext.tsx";
 import { SelectedCityProvider } from "./contexts/SelectedCityContext.tsx";
@@ -14,12 +15,16 @@ declare module "@tanstack/react-router" {
 	}
 }
 
+const queryClient = new QueryClient();
+
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<SelectedCityProvider>
-			<FavoritesCitiesProvider>
-				<RouterProvider router={router} />
-			</FavoritesCitiesProvider>
-		</SelectedCityProvider>
+		<QueryClientProvider client={queryClient}>
+			<SelectedCityProvider>
+				<FavoritesCitiesProvider>
+					<RouterProvider router={router} />
+				</FavoritesCitiesProvider>
+			</SelectedCityProvider>
+		</QueryClientProvider>
 	</StrictMode>,
 );
