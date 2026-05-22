@@ -6,10 +6,25 @@ import InfoItem from "./InfoItem";
 
 export default function SummaryCard() {
 	const { selectedCity } = useSelectedCity();
-	const { summaryWeather } = useSummaryWeather(selectedCity);
+	const { data: summaryWeather, isPending, isError } = useSummaryWeather(selectedCity);
 	const data = dayjs();
 	const today = data.format("DD MMM YY");
-	console.log(selectedCity)
+
+	if (isPending)
+		return (
+			<div className="flex flex-col gap-11 items-center bg-linear-to-b from-primary to-secondary p-6 rounded-3xl w-max h-max">
+				<div className="h-32 w-48 bg-white  rounded-xl animate-pulse" />
+				<div className="h-26 w-68 bg-white  rounded-xl animate-pulse" />
+			</div>
+		);
+
+	if (isError)
+		return (
+			<div className="bg-destructive  p-6 rounded-3xl w-max h-max">
+				<p className="text-white text-sm">Erro ao carregar dados.</p>
+			</div>
+		);
+
 	return (
 		<div className="bg-linear-to-b from-primary to-secondary p-6 rounded-3xl w-max h-max">
 			<div className="text-xs">
