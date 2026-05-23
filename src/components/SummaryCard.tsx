@@ -21,7 +21,7 @@ export default function SummaryCard() {
 	if (isError)
 		return (
 			<div className="bg-destructive  p-6 rounded-3xl w-max h-max">
-				<p className="text-white text-sm">Erro ao carregar dados.</p>
+				<p className="text-white text-sm">Error loading data.</p>
 			</div>
 		);
 
