@@ -5,7 +5,7 @@ import { useCitySearch } from "@/hooks/useCitySearch";
 import { DialogClose, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 
 export default function SearchDialog() {
-	const { query, setQuery, cityList } = useCitySearch();
+	const { query, setQuery, cityList, isPending, isError } = useCitySearch();
 	const { isFavorited, toggleFavorite } = useFavorites();
 	const { changeSelectedCity } = useSelectedCity();
 
@@ -35,6 +35,14 @@ export default function SearchDialog() {
 			</DialogHeader>
 			<div className="p-2">
 				<h3 className="text-sm p-2">Suggestions</h3>
+				{isPending && (
+						<p className="text-white text-xl ">Loading...</p>
+				)}
+				{isError && (
+					<div className="bg-destructive  p-6 rounded-3xl w-max h-max">
+						<p className="text-white text-lg">Error loading data.</p>
+					</div>
+				)}
 				{cityList.map((item) => {
 					return (
 						<div
