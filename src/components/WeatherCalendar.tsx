@@ -5,9 +5,25 @@ import { useWeatherCalendar } from "@/hooks/useWeatherCalendar";
 
 export default function WeatherCalendar() {
 	const { selectedCity } = useSelectedFavoriteCity();
-	const { calendarIcons } = useWeatherCalendar(selectedCity);
+	const { data: calendarIcons, isPending, isError } = useWeatherCalendar(selectedCity);
 
 	const { days, today, tomorrow } = calendar();
+
+	if (isPending)
+		return (
+			<div className="grid grid-cols-7 gap-2">
+				{Array.from({ length: 35 }).map((_, i) => {
+					return <div className="h-32 bg-icons rounded-2xl animate-pulse" key={i}></div>;
+				})}
+			</div>
+		);
+
+	if (isError)
+		return (
+			<div className="bg-destructive  p-6 rounded-3xl w-max h-max">
+				<p className="text-white text-sm">Error loading data.</p>
+			</div>
+		);
 
 	return (
 		<div className="w-full border border-card-foreground rounded-xl bg-card shadow-md overflow-hidden">
