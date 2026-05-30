@@ -3,8 +3,40 @@ import { useNext7DaysWeather } from "@/hooks/useNext7DaysWeather";
 
 export default function ForecastCard() {
 	const { selectedCity } = useSelectedCity();
-	const { next7DaysWeather } = useNext7DaysWeather(selectedCity);
-	console.log(next7DaysWeather[1]);
+	const { data: next7DaysWeather, isPending, isError } = useNext7DaysWeather(selectedCity);
+
+	if (isPending)
+		return (
+			<div className="relative bg-card rounded-3xl p-4 w-full h-82 flex flex-col">
+				<h2 className="text-icons font-semibold text-xl">Next 7 days</h2>
+				<div className="flex-1 overflow-y-scroll scrollbar-hide">
+					{Array.from({ length: 5 }).map((_, i) => {
+						return (
+							<div className="grid grid-cols-4 items-center text-icons p-4 gap-32" key={i}>
+								<div className="h-12 bg-icons rounded-2xl animate-pulse"></div>
+								<div className="h-12 bg-icons rounded-2xl animate-pulse col-span-2"></div>
+								<div className="h-12 bg-icons rounded-2xl animate-pulse"></div>
+							</div>
+						);
+					})}
+					<div className="sticky bottom-0">
+						<div className="grid grid-cols-4 gap-32 items-center p-4 bg-linear-to-b from-primary to-secondary rounded-2xl text-white">
+							<div className="h-12 bg-icons rounded-2xl animate-pulse"></div>
+							<div className="h-12 bg-icons rounded-2xl animate-pulse col-span-2"></div>
+							<div className="h-12 bg-icons rounded-2xl animate-pulse"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+
+	if (isError)
+		return (
+			<div className="bg-destructive  p-6 rounded-3xl w-max h-max">
+				<p className="text-white text-sm">Error loading data.</p>
+			</div>
+		);
+
 	return (
 		<div className="relative bg-card rounded-3xl p-4 w-full h-82 flex flex-col">
 			<h2 className="text-icons font-semibold text-xl">Next 7 days</h2>
