@@ -1,32 +1,22 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getCurrent } from "@/services/wheatherService";
-import type { nowCitiesWeathersType } from "@/types/citiesWeathersType";
-
+const sleep = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
 export const useNowCitiesWeathers = (favorites: string[]) => {
-	const [nowCitiesWeathers, setNowCitiesWeathers] = useState<nowCitiesWeathersType[]>([]);
-
-	useEffect(() => {
-		if (!favorites.length) return;
-		const fetchCitiesData = async () => {
-			try {
-				const nowCityDatas: nowCitiesWeathersType[] = await Promise.all(
-					favorites.map(async (city) => {
-						const nowCityData = await getCurrent(city);
-						return {
-							icon: nowCityData.current.condition.icon,
-							name: nowCityData.location.name,
-							tempC: nowCityData.current.temp_c.toFixed(0),
-						};
-					}),
-				);
-				console.log(nowCityDatas);
-				setNowCitiesWeathers(nowCityDatas);
-			} catch (err) {
-				console.error(err);
-			}
-		};
-		fetchCitiesData();
-	}, [favorites]);
-
-	return { nowCitiesWeathers };
+	return useQuery({
+		queryKey: ["nowCitiesWeathers", favorites],
+		queryFn: async () => {
+			await sleep(3000)
+			return await Promise.all(
+				favorites.map(async (city) => {
+					const nowCityData = await getCurrent(city);
+					return {
+						icon: nowCityData.current.condition.icon,
+						name: nowCityData.location.name,
+						tempC: nowCityData.current.temp_c.toFixed(0),
+					};
+				}),
+			);
+		},
+		enabled: favorites.length > 0
+	});
 };
