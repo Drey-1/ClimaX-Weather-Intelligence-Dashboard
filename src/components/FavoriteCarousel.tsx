@@ -13,10 +13,47 @@ import {
 
 export default function FavoriteCarousel() {
 	const { favorites } = useFavorites();
-	const { nowCitiesWeathers } = useNowCitiesWeathers(favorites);
+	const { data: nowCitiesWeathers, isPending, isError } = useNowCitiesWeathers(favorites);
 	const { selectedCity, setSelectedCity } = useSelectedFavoriteCity();
 
 	const basis = `basis-1/${Math.min(favorites.length, 5)}`;
+
+	if (isPending)
+		return (
+			<div>
+				<h3 className="flex gap-1 text-icons text-xl pl-6 pb-2">
+					<p>Select a city of your</p>
+					<Link className="text-accent font-bold" to="/favorites">
+						favorite list
+					</Link>
+					:
+				</h3>
+				<Carousel opts={{ align: "start" }} className="flex justify-center w-full px-16">
+					<CarouselPrevious />
+					<CarouselContent>
+						<CarouselItem className={`basis-1/3 py-3 w-60`}>
+							<div className=" p-1 bg-card h-42 my-12 animate-bounce rounded-2xl"></div>
+						</CarouselItem>
+						<CarouselItem className={`basis-1/3 py-3 w-60`}>
+							<div className="flex justify-center items-center p-1 bg-card h-42 my-12 animate-bounce rounded-2xl">
+								<p className="text-icons text-center text-2xl font-bold animate-ping">Loading...</p>
+							</div>
+						</CarouselItem>
+						<CarouselItem className={`basis-1/3 py-3 w-60`}>
+							<div className="p-1 bg-card h-42 my-12 animate-bounce rounded-2xl"></div>
+						</CarouselItem>
+					</CarouselContent>
+					<CarouselNext />
+				</Carousel>
+			</div>
+		);
+
+	if (isError)
+		return (
+			<div className="bg-destructive  p-6 rounded-3xl w-max h-max">
+				<p className="text-white text-sm">Error loading data.</p>
+			</div>
+		);
 
 	return (
 		<div>
