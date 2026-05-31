@@ -7,11 +7,11 @@ const SelectedFavoriteContext = createContext<SelectedFavoriteContextType | null
 
 export const SelectedFavoriteProvider = ({ children }: { children: ReactNode }) => {
 	const { favorites } = useFavorites();
-	const { nowCitiesWeathers } = useNowCitiesWeathers(favorites);
+	const { data: nowCitiesWeathers } = useNowCitiesWeathers(favorites);
 	const [selectedCity, setSelectedCity] = useState<string | null>(null);
 
 	useEffect(() => {
-		if (nowCitiesWeathers.length > 0 && selectedCity === null) {
+		if (nowCitiesWeathers && nowCitiesWeathers.length > 0 && selectedCity === null) {
 			setSelectedCity(nowCitiesWeathers[0].name);
 		}
 	}, [nowCitiesWeathers, selectedCity]);
