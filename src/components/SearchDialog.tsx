@@ -36,7 +36,7 @@ export default function SearchDialog() {
 			<div className="p-2">
 				<h3 className="text-sm p-2">Suggestions</h3>
 				{isPending && (
-						<p className="text-white text-xl ">Loading...</p>
+						<p className="text-icons text-xl ">Loading...</p>
 				)}
 				{isError && (
 					<div className="bg-destructive  p-6 rounded-3xl w-max h-max">
