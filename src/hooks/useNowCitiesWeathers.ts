@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCurrent } from "@/services/wheatherService";
-const sleep = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
 export const useNowCitiesWeathers = (favorites: string[]) => {
 	return useQuery({
 		queryKey: ["nowCitiesWeathers", favorites],
 		queryFn: async () => {
-			await sleep(3000)
 			return await Promise.all(
 				favorites.map(async (city) => {
 					const nowCityData = await getCurrent(city);
@@ -17,6 +15,6 @@ export const useNowCitiesWeathers = (favorites: string[]) => {
 				}),
 			);
 		},
-		enabled: favorites.length > 0
+		enabled: favorites.length > 0,
 	});
 };
