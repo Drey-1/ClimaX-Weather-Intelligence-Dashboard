@@ -14,9 +14,10 @@ export const UNIT_MAP = {
 };
 
 export const mapWeatherToChartData = (
-	wholeTodayWeather: WholeTodayWeatherType[],
+	wholeTodayWeather: WholeTodayWeatherType[]| undefined,
 	chartType: ChartType,
 ) => {
+	if(!wholeTodayWeather) return []
 	return wholeTodayWeather.map((item) => {
 		return {
 			hour: item.time,

@@ -5,8 +5,30 @@ import { Chart } from "./Chart";
 
 export default function WeatherChart() {
 	const { selectedCity } = useSelectedCity();
-	const { wholeTodayWeather } = useWholeTodayWeather(selectedCity);
+	const { data: wholeTodayWeather, isPending, isError } = useWholeTodayWeather(selectedCity);
 	const { chartType, handleChange, chartData } = useWeatherChart(wholeTodayWeather);
+
+	if (isPending)
+		return (
+			<div className="bg-card rounded-3xl p-4">
+				<div className="flex justify-between text-icons">
+					<h2 className="text-xl  font-semibold">Overview</h2>
+					<div className="flex gap-4 border border-card-foreground rounded-3xl p-0.5">
+						<div className="rounded-3xl px-6 py-0.5">Temperature</div>
+						<div className="rounded-3xl px-6 py-0.5">Humidity</div>
+						<div className="rounded-3xl px-6 py-0.5">Rainfall</div>
+					</div>
+				</div>
+				<div className="h-128 bg-linear-to-t to-transparent via-accent from-transparent animate-pulse rounded-2xl"></div>
+			</div>
+		);
+
+	if (isError)
+		return (
+			<div className="bg-destructive  p-6 rounded-3xl w-max h-max">
+				<p className="text-white text-sm">Error loading data.</p>
+			</div>
+		);
 
 	return (
 		<div className="bg-card rounded-3xl p-4">
