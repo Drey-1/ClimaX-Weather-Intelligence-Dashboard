@@ -5,7 +5,6 @@ import { useDeepForecast } from "@/hooks/useDeepForecast";
 export default function DeepSchedule() {
 	const { selectedCity } = useSelectedFavoriteCity();
 	const { data: deepForecasts, isPending, isError } = useDeepForecast(selectedCity);
-	console.log(deepForecasts)
 
 	if (isPending) return (
     <div className="flex flex-col gap-2">
