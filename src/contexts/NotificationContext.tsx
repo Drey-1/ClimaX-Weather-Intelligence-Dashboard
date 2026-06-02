@@ -27,8 +27,8 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
 						className="bg-card border border-card-foreground rounded-xl px-5 py-4 w-72 shadow-sm relative overflow-hidden animate-slide-in"
 					>
 						<h1 className="text-sm font-medium text-icons mb-1">Notification</h1>
-						<p className="text-xs text-card-foreground">{notification.message}</p>
-						<div className="absolute bottom-0 left-0 h-0.5 bg-gray-200 animate-shrink" />
+						<p className="text-xs text-icons">{notification.message}</p>
+						<div className="absolute bottom-0 left-0 h-0.5 bg-icons animate-shrink" />
 					</div>
 				))}
 			</div>
