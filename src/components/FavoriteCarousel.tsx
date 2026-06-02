@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useFavorites } from "@/contexts/FavoritesContext";
+import { useNotification } from "@/contexts/NotificationContext";
 import { useSelectedFavoriteCity } from "@/contexts/SelectedFavoriteCityContext";
 import { useNowCitiesWeathers } from "@/hooks/useNowCitiesWeathers";
 import { Card, CardContent } from "./ui/card";
@@ -15,6 +16,7 @@ export default function FavoriteCarousel() {
 	const { favorites } = useFavorites();
 	const { data: nowCitiesWeathers, isPending, isError } = useNowCitiesWeathers(favorites);
 	const { selectedCity, setSelectedCity } = useSelectedFavoriteCity();
+	const { notification } = useNotification();
 
 	const basis = `basis-1/${Math.min(favorites.length, 5)}`;
 
@@ -74,7 +76,10 @@ export default function FavoriteCarousel() {
 							<CarouselItem key={item.name} className={`${basis} py-3 w-60`}>
 								<div className="p-1">
 									<Card
-										onClick={() => setSelectedCity(item.name)}
+										onClick={() => {
+											setSelectedCity(item.name);
+											notification(`Selected city changed to ${item.name}`);
+										}}
 										className={`cursor-pointer transition-all duration-300 ${
 											isSelected
 												? "ring-2 ring-accent border-accent bg-transparent"
