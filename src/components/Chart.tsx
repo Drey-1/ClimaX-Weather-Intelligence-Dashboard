@@ -16,6 +16,7 @@ export function Chart({ type, chartData }: { type: ChartType; chartData: ChartDa
 	return (
 		<ChartContainer config={chartConfig}>
 			<AreaChart
+				className="-mx-6 sm:mx-0"
 				accessibilityLayer
 				data={chartData}
 				margin={{
