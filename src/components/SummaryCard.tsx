@@ -26,7 +26,7 @@ export default function SummaryCard() {
 		);
 
 	return (
-		<div className="bg-linear-to-b from-primary to-secondary p-6 rounded-3xl w-max h-max">
+		<div className="bg-linear-to-b from-primary to-secondary p-6 rounded-3xl w-max h-max m-auto">
 			<div className="text-xs">
 				<p className=" text-gray-200">Today, {today}</p>
 				<p className="flex items-center  text-white">
