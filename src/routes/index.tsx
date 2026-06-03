@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
 function RouteComponent() {
 	return (
 		<div className="flex flex-col gap-4">
-			<div className="flex gap-4 mt-2">
+			<div className="flex flex-col md:flex-row gap-4 mt-2">
 				<SummaryCard />
 				<ForecastCard />
 			</div>
