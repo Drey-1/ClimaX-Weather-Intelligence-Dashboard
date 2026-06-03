@@ -12,13 +12,15 @@ export default function Header() {
 		setMenuOpen(!isMenuOpen);
 	}
 	return (
-		<header className="flex items-center justify-between gap-4">
-			<div className="flex gap-4">
+		<header className="flex flex-col md:flex-row items-center justify-between gap-4">
+			<div className="flex w-full justify-between sm:justify-normal items-center gap-4">
 				<Button size={"lg"} onClick={switchMenu} className="rounded-full">
 					{isMenuOpen ? <X /> : <MenuIcon />}
 				</Button>
-				<img src={climaxLogo} alt="Climax logo" className="relative w-10 -right-2"/>
-				<h1 className="text-4xl text-icons font-semibold">ClimaX</h1>
+				<div className="flex gap-4">
+					<img src={climaxLogo} alt="Climax logo" className="relative w-10 -right-2" />
+					<h1 className="text-4xl text-icons font-semibold">ClimaX</h1>
+				</div>
 			</div>
 			<SearchBar />
 			<ThemeSwitch />
