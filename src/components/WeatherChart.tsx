@@ -32,9 +32,9 @@ export default function WeatherChart() {
 
 	return (
 		<div className="bg-card rounded-3xl p-4">
-			<div className="flex justify-between items-center text-icons">
+			<div className="flex flex-col md:flex-row justify-between items-center text-icons mb-2 sm:mb-0">
 				<h2 className="text-xl font-semibold">Overview</h2>
-				<div className="flex gap-4 border border-card-foreground rounded-3xl p-0.5">
+				<div className="flex gap-1 sm:gap-4 border border-card-foreground rounded-3xl p-0.5">
 					<div>
 						<input
 							type="radio"
@@ -47,7 +47,7 @@ export default function WeatherChart() {
 						/>
 						<label
 							htmlFor="temp"
-							className="peer-checked:bg-card-foreground rounded-3xl px-6 py-0.5 cursor-pointer"
+							className="peer-checked:bg-card-foreground rounded-3xl px-2 sm:px-6 py-0.5 cursor-pointer"
 						>
 							Temperature
 						</label>
@@ -63,7 +63,7 @@ export default function WeatherChart() {
 						/>
 						<label
 							htmlFor="humidity"
-							className="peer-checked:bg-card-foreground rounded-3xl px-6 py-0.5 cursor-pointer"
+							className="peer-checked:bg-card-foreground rounded-3xl px-2 sm:px-6 py-0.5 cursor-pointer"
 						>
 							Humidity
 						</label>
@@ -79,7 +79,7 @@ export default function WeatherChart() {
 						/>
 						<label
 							htmlFor="rain"
-							className="peer-checked:bg-card-foreground rounded-3xl px-6 py-0.5 cursor-pointer"
+							className="peer-checked:bg-card-foreground rounded-3xl px-2 sm:px-6 py-0.5 cursor-pointer"
 						>
 							Rainfall
 						</label>
