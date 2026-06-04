@@ -20,7 +20,7 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
 	return (
 		<NotificationContext.Provider value={{ notification }}>
 			{children}
-			<div className="fixed top-20 right-5 flex flex-col-reverse gap-2">
+			<div className="fixed top-20 right-5 flex flex-col-reverse gap-2 z-20">
 				{notifications.map((notification) => (
 					<div
 						key={notification.id}
