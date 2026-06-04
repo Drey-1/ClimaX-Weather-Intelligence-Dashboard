@@ -40,7 +40,7 @@ function RouteComponent() {
 								/>
 								<label
 									htmlFor="simple"
-									className="peer-checked:bg-card-foreground block rounded-3xl px-6 py-0.5 cursor-pointer"
+									className="peer-checked:bg-card-foreground block rounded-3xl px-3 sm:px-6 py-0.5 cursor-pointer"
 								>
 									Simple
 								</label>
@@ -58,7 +58,7 @@ function RouteComponent() {
 								/>
 								<label
 									htmlFor="deep"
-									className="peer-checked:bg-card-foreground block rounded-3xl px-6 py-0.5 cursor-pointer"
+									className="peer-checked:bg-card-foreground block rounded-3xl px-3 sm:px-6 py-0.5 cursor-pointer"
 								>
 									Deep
 								</label>
