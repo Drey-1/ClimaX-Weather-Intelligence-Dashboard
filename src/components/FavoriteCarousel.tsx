@@ -18,7 +18,15 @@ export default function FavoriteCarousel() {
 	const { selectedCity, setSelectedCity } = useSelectedFavoriteCity();
 	const { notification } = useNotification();
 
-	const basis = `basis-1/${Math.min(favorites.length, 5)}`;
+	const basisMap: Record<number, string> = {
+		1: "sm:basis-1/1",
+		2: "sm:basis-1/2",
+		3: "sm:basis-1/3",
+		4: "sm:basis-1/4",
+		5: "sm:basis-1/5",
+	};
+
+	const basis = basisMap[Math.min(favorites.length, 5)] ?? "sm:basis-1/5";
 
 	if (isPending)
 		return (
@@ -73,7 +81,7 @@ export default function FavoriteCarousel() {
 						const isSelected = selectedCity === item.name;
 
 						return (
-							<CarouselItem key={item.name} className={`${basis} py-3 w-60`}>
+							<CarouselItem key={item.name} className={`basis-1/1 ${basis} py-3 w-60`}>
 								<div className="p-1">
 									<Card
 										onClick={() => {
