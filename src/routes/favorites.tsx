@@ -50,8 +50,8 @@ function RouteComponent() {
 		);
 
 	return (
-		<div className="flex flex-col gap-6">
-			<h1 className="text-icons text-xl pl-6 pb-2">Your favorites cities:</h1>
+		<div className="flex flex-col gap-4 sm:gap-6">
+			<h1 className="text-icons text-xl pl-3 sm:pl-6 pb-0 sm:pb-2">Your favorites cities:</h1>
 			{citiesWeathers.map((item) => {
 				return (
 					<FavoriteCard
@@ -73,7 +73,9 @@ function RouteComponent() {
 					</DialogTrigger>
 					<SearchDialog />
 				</Dialog>
-				<p className="text-3xl text-card-foreground">Add the cities you are interested in</p>
+				<p className="text-lg sm:text-3xl text-card-foreground">
+					Add the cities you are interested in
+				</p>
 			</div>
 		</div>
 	);
