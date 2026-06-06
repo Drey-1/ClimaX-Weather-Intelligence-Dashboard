@@ -1,5 +1,6 @@
 import { useSelectedCity } from "@/contexts/SelectedCityContext";
 import { useNext7DaysWeather } from "@/hooks/useNext7DaysWeather";
+import type { next7DaysWeatherType } from "@/types/next7DaysWeatherType";
 
 export default function ForecastCard() {
 	const { selectedCity } = useSelectedCity();
@@ -41,7 +42,7 @@ export default function ForecastCard() {
 		<div className="relative bg-card rounded-3xl p-4 w-full h-82 flex flex-col">
 			<h2 className="text-icons font-semibold text-xl">Next 7 days</h2>
 			<div className="flex-1 overflow-y-scroll scrollbar-hide">
-				{next7DaysWeather.map((city) => {
+				{next7DaysWeather.map((city: next7DaysWeatherType) => {
 					return (
 						<div key={city.dayOfWeek} className="grid grid-cols-3 items-center text-icons p-4">
 							<p>{city.dayOfWeek}</p>
