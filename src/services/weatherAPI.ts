@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://api.weatherapi.com/v1";
+const URL = "https://api.weatherapi.com/v1";
 
 export const API = axios.create({
 	baseURL: URL,
