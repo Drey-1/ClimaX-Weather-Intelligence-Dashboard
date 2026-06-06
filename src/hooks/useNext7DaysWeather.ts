@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { getForecast } from "@/services/wheatherService";
+import type { receivedNext7DaysWeatherType } from "@/types/next7DaysWeatherType";
 
 export const useNext7DaysWeather = (selectedCity: string) => {
 	return useQuery({
 		queryKey: ["next7DaysWeather", selectedCity],
 		queryFn: async () => {
 			const data = await getForecast(selectedCity, 7);
-			return data.forecast.forecastday.map((item) => {
+			return data.forecast.forecastday.map((item: receivedNext7DaysWeatherType) => {
 				const dateChar = item.date;
 				const date = new Date(`${dateChar}T00:00:00`);
 				return {
@@ -18,6 +19,6 @@ export const useNext7DaysWeather = (selectedCity: string) => {
 				};
 			});
 		},
-		enabled: !!selectedCity
+		enabled: !!selectedCity,
 	});
 };
