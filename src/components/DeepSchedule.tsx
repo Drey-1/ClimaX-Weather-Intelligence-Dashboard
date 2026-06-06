@@ -1,6 +1,7 @@
 import { DropletIcon } from "lucide-react";
 import { useSelectedFavoriteCity } from "@/contexts/SelectedFavoriteCityContext";
 import { useDeepForecast } from "@/hooks/useDeepForecast";
+import type { deepForecastsInUseType } from "@/types/deepForecastsInUseType";
 
 export default function DeepSchedule() {
 	const { selectedCity } = useSelectedFavoriteCity();
@@ -27,7 +28,7 @@ export default function DeepSchedule() {
 
 	return (
 		<div className="px-4 text-icons text-lg sm:text-xl ">
-			{deepForecasts.map((day) => {
+			{deepForecasts.map((day: deepForecastsInUseType) => {
 				return (
 					<div
 						key={day.day}
