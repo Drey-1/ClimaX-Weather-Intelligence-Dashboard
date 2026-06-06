@@ -1,3 +1,10 @@
+type receivedWholeTodayWeatherType = {
+	time: string;
+	temp_c: number;
+	humidity: number;
+	precip_mm: number;
+};
+
 type WholeTodayWeatherType = {
 	time: string;
 	tempC: number;
@@ -5,4 +12,4 @@ type WholeTodayWeatherType = {
 	rainfall: number;
 };
 
-export type { WholeTodayWeatherType };
+export type { receivedWholeTodayWeatherType, WholeTodayWeatherType };
