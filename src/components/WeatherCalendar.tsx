@@ -2,6 +2,7 @@ import { format, isSameDay } from "date-fns";
 import { useSelectedFavoriteCity } from "@/contexts/SelectedFavoriteCityContext";
 import { calendar, WEEK_DAYS } from "@/domain/calendarCreate";
 import { useWeatherCalendar } from "@/hooks/useWeatherCalendar";
+import type { calendarCityForecastType } from "@/types/citiesWeathersType";
 
 export default function WeatherCalendar() {
 	const { selectedCity } = useSelectedFavoriteCity();
@@ -41,7 +42,7 @@ export default function WeatherCalendar() {
 					const isCurrentMonth = day.getMonth() === today.getMonth();
 					const isToday = isSameDay(day, today);
 					const dayFormatted = format(day, "yyyy-MM-dd");
-					const forecast = calendarIcons.find((item) => item.date === dayFormatted);
+					const forecast = calendarIcons.find((item : calendarCityForecastType) => item.date === dayFormatted);
 
 					return (
 						<div
