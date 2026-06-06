@@ -11,7 +11,7 @@
 ![TanStack Router](https://img.shields.io/badge/TanStack_Router-v1-FF4154?style=flat-square&logo=reactquery)
 ![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=flat-square&logo=vite)
 
-[Demo ao vivo](#) · [Reportar Bug](../../issues) · [Solicitar Feature](../../issues)
+[Demo ao vivo](https://clima-x-weather-intelligence-dashbo-five.vercel.app/) · [Reportar Bug](../../issues) · [Solicitar Feature](../../issues)
 
 </div>
 
