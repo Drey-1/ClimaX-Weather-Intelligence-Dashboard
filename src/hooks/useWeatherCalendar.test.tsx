@@ -72,7 +72,7 @@ describe("useWeatherCalendar", () => {
 		]);
 	});
 
-    it("must returns mapped data with icon and date for each forecast day", async () => {
+    it("must sets isError to true when getForecast rejects", async () => {
 		vi.mocked(getForecast).mockRejectedValue(new Error("Error!"));
 		const { result } = renderHook(() => useWeatherCalendar("London"), { wrapper: createWrapper() });
 
