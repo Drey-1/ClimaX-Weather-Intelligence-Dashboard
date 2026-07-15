@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import type { NotificationContextType, NotificationType } from "@/types/NotificationContextTypes";
 
-const NOTIFICATION_DURATION_MS = 4000;
+export const NOTIFICATION_DURATION_MS = 4000;
 
 const NotificationContext = createContext<NotificationContextType>({} as NotificationContextType);
 
