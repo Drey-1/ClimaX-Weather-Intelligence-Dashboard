@@ -1,6 +1,7 @@
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { type ChartConfig, ChartContainer, ChartTooltip } from "@/components/ui/chart";
 import { TICK_MAP, UNIT_MAP } from "@/domain/weatherChart.domain";
+import type { ChartTooltipContentProps } from "@/types/ChartTooltipContentProps";
 import type { ChartDataType, ChartType } from "@/types/chartTypes";
 
 const chartConfig = {
@@ -9,6 +10,21 @@ const chartConfig = {
 		color: "var(--accent)",
 	},
 } satisfies ChartConfig;
+
+export const ChartTooltipContent = ({ active, payload, unit }: ChartTooltipContentProps) => {
+	if (active && payload && payload.length) {
+		return (
+			<div className="relative -translate-11 ">
+				<div className="bg-linear-to-b from-primary to-secondary text-center px-5 py-1 rounded-full text-white text-sm">
+					{payload[0].value}
+					{unit}
+				</div>
+				<div className="absolute w-3 h-3 rotate-45 bg-secondary -z-10 -bottom-1 left-1/2 -translate-x-1/2" />
+			</div>
+		);
+	}
+	return null;
+};
 
 export function Chart({ type, chartData }: { type: ChartType; chartData: ChartDataType[] }) {
 	const ticks = TICK_MAP[type];
@@ -43,20 +59,7 @@ export function Chart({ type, chartData }: { type: ChartType; chartData: ChartDa
 				<ChartTooltip
 					cursor={false}
 					allowEscapeViewBox={{ x: true, y: true }}
-					content={({ active, payload }) => {
-						if (active && payload && payload.length) {
-							return (
-								<div className="relative -translate-11 ">
-									<div className="bg-linear-to-b from-primary to-secondary text-center px-5 py-1 rounded-full text-white text-sm">
-										{payload[0].value}
-										{unit}
-									</div>
-									<div className="absolute w-3 h-3 rotate-45 bg-secondary -z-10 -bottom-1 left-1/2 -translate-x-1/2" />
-								</div>
-							);
-						}
-						return null;
-					}}
+					content={(props) => <ChartTooltipContent {...props} unit={unit} />}
 				/>
 
 				<defs>
