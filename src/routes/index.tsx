@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
 	component: RouteComponent,
 });
 
-function RouteComponent() {
+export function RouteComponent() {
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex flex-col md:flex-row gap-4 mt-2">
