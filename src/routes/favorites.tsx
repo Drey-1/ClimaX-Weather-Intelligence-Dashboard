@@ -6,7 +6,21 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { useFavorites } from "@/contexts/FavoritesContext";
 import { useFavoritesWeather } from "@/hooks/useFavoritesWeather";
 
-function RouteComponent() {
+const AddCityDialog = () => (
+	<div className="flex border-2 border-dashed border-card rounded-3xl p-4 gap-6 items-center">
+		<Dialog>
+			<DialogTrigger asChild className="cursor-pointer">
+				<div className="bg-card rounded-xl p-1">
+					<PlusIcon size={32} className="text-card-foreground" />
+				</div>
+			</DialogTrigger>
+			<SearchDialog />
+		</Dialog>
+		<p className="text-lg sm:text-3xl text-card-foreground">Add the cities you are interested in</p>
+	</div>
+);
+
+export function RouteComponent() {
 	const { favorites } = useFavorites();
 	const { data: citiesWeathers, isPending, isError } = useFavoritesWeather(favorites);
 
@@ -28,17 +42,7 @@ function RouteComponent() {
 					<div className=" bg-icons rounded-2xl animate-pulse"></div>
 					<div className=" bg-icons rounded-2xl animate-pulse"></div>
 				</div>
-				<div className="flex border-2 border-dashed border-card rounded-3xl p-4 gap-6 items-center">
-					<Dialog>
-						<DialogTrigger asChild className="cursor-pointer">
-							<div className="bg-card rounded-xl p-1">
-								<PlusIcon size={32} className="text-card-foreground" />
-							</div>
-						</DialogTrigger>
-						<SearchDialog />
-					</Dialog>
-					<p className="text-3xl text-card-foreground">Add the cities you are interested in</p>
-				</div>
+				<AddCityDialog/>
 			</div>
 		);
 
@@ -64,19 +68,7 @@ function RouteComponent() {
 					/>
 				);
 			})}
-			<div className="flex border-2 border-dashed border-card rounded-3xl p-4 gap-6 items-center">
-				<Dialog>
-					<DialogTrigger asChild className="cursor-pointer">
-						<div className="bg-card rounded-xl p-1">
-							<PlusIcon size={32} className="text-card-foreground" />
-						</div>
-					</DialogTrigger>
-					<SearchDialog />
-				</Dialog>
-				<p className="text-lg sm:text-3xl text-card-foreground">
-					Add the cities you are interested in
-				</p>
-			</div>
+			<AddCityDialog/>
 		</div>
 	);
 }
