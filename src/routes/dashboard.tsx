@@ -10,7 +10,7 @@ export const Route = createFileRoute("/dashboard")({
 	component: RouteComponent,
 });
 
-function RouteComponent() {
+export function RouteComponent() {
 	const [dataPresentation, setDataPresentation] = useState<"simple" | "deep">("simple");
 
 	const dateData = dayjs();
