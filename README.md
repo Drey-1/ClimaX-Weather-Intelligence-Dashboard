@@ -10,6 +10,7 @@
 ![TanStack Query](https://img.shields.io/badge/TanStack_Query-v5-FF4154?style=flat-square&logo=reactquery)
 ![TanStack Router](https://img.shields.io/badge/TanStack_Router-v1-FF4154?style=flat-square&logo=reactquery)
 ![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=flat-square&logo=vite)
+![Vitest](https://img.shields.io/badge/Vitest-4-6E9F18?style=flat-square&logo=vitest)
 
 [Demo ao vivo](https://clima-x-weather-intelligence-dashbo-five.vercel.app/) · [Reportar Bug](../../issues) · [Solicitar Feature](../../issues)
 
@@ -37,7 +38,7 @@
 | 🚀 **Server state moderno** | Gerenciamento de dados assíncronos com TanStack Query v5 |
 | 🗺️ **Roteamento type-safe** | Navegação file-based com TanStack Router |
 | 📱 **Layout responsivo** | Interface adaptada para mobile e desktop com Tailwind CSS |
-
+| 🧪 **Testes automatizados** | Suíte completa com Vitest + Testing Library cobrindo domínio, hooks, contexts, componentes e rotas |
 ---
 
 ## 🎨 Design & Prototipagem
@@ -123,6 +124,26 @@ const conditionColorMap: Record<Condition, string> = {
 }
 ```
 
+### Testes automatizados com Vitest + React Testing Library
+
+O projeto tem uma suíte de testes cobrindo todas as camadas da aplicação — funções de domínio puras, custom hooks (síncronos e assíncronos com TanStack Query), Context providers, componentes e rotas. A estratégia varia por camada: funções de domínio são testadas isoladamente por entrada/saída, hooks assíncronos mockam a camada de serviço (`vi.mock` + `mockImplementation`), e componentes mockam os hooks já testados individualmente, evitando duplicar cobertura entre camadas.
+
+```ts
+// Hook assíncrono: mock de service + QueryClientProvider como wrapper
+const { result } = renderHook(() => useDeepForecast(selectedCity), {
+  wrapper: createQueryWrapper(),
+})
+
+await waitFor(() => expect(result.current.isSuccess).toBe(true))
+```
+
+Pontos técnicos resolvidos ao longo da suíte: mock de `ResizeObserver`/`matchMedia` para componentes que dependem de medição de layout (Recharts, Embla Carousel), controle de tempo não-determinístico com `vi.useFakeTimers`/`vi.setSystemTime` para lógica de calendário e notificações com auto-dismiss, e isolamento de mocks entre testes via `vi.resetAllMocks()` no `beforeEach`.
+
+```bash
+npm run test        # modo watch
+npm run test:ui     # interface visual do Vitest
+```
+
 ### Camada de domínio isolada
 
 A pasta `domain/` concentra lógica pura — sem efeitos colaterais, sem dependências de UI. O mapeamento dos dados da WeatherAPI para o formato esperado pelo Recharts acontece aqui, não dentro dos componentes. O mesmo vale para o cálculo do calendário mensal.
@@ -184,6 +205,8 @@ Acesse [http://localhost:5173](http://localhost:5173)
 | [date-fns](https://date-fns.org) + [dayjs](https://day.js.org) | — | Manipulação de datas |
 | [Biome](https://biomejs.dev) | — | Linter e formatter |
 | [WeatherAPI](https://www.weatherapi.com) | — | Dados meteorológicos |
+| [Vitest](https://vitest.dev) | v4 | Test runner |
+| [Testing Library](https://testing-library.com) | — | Testes de componentes e hooks |
 
 ---
 
